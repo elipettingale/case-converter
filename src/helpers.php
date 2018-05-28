@@ -4,7 +4,7 @@ if (!function_exists('convert_case'))
 {
     function convert_case(string $string, string $conversion): string
     {
-        return call_user_func(lower_hyphen_case($conversion), $string);
+        return call_user_func(lower_snake_case($conversion), $string);
     }
 }
 
