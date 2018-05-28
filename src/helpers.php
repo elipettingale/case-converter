@@ -2,9 +2,9 @@
 
 if (!function_exists('convert_case'))
 {
-    function convert_case(string $string, callable $conversion): string
+    function convert_case(string $string, string $conversion): string
     {
-        return $conversion($string);
+        return call_user_func(lower_hyphen_case($conversion), $string);
     }
 }
 
