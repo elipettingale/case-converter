@@ -16,19 +16,19 @@ if (!function_exists('strip_special_chars'))
     }
 }
 
-if (!function_exists('upper_case'))
-{
-    function upper_case(string $string): string
-    {
-        return ucwords(strtolower(strip_special_chars($string)));
-    }
-}
-
 if (!function_exists('lower_case'))
 {
     function lower_case(string $string): string
     {
         return strtolower(strip_special_chars($string));
+    }
+}
+
+if (!function_exists('upper_case'))
+{
+    function upper_case(string $string): string
+    {
+        return ucwords(strtolower(strip_special_chars($string)));
     }
 }
 
