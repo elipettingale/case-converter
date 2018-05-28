@@ -24,6 +24,14 @@ if (!function_exists('lower_case'))
     }
 }
 
+if (!function_exists('tight_case'))
+{
+    function tight_case(string $string): string
+    {
+        return str_replace(' ', '', lower_case($string));
+    }
+}
+
 if (!function_exists('lower_snake_case'))
 {
     function lower_snake_case(string $string): string
@@ -69,13 +77,5 @@ if (!function_exists('upper_hyphen_case'))
     function upper_hyphen_case(string $string): string
     {
         return str_replace(' ', '-', upper_case($string));
-    }
-}
-
-if (!function_exists('tight_case'))
-{
-    function tight_case(string $string): string
-    {
-        return str_replace(' ', '', lower_case($string));
     }
 }
