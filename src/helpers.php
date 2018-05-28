@@ -1,5 +1,13 @@
 <?php
 
+if (!function_exists('convert_case'))
+{
+    function convert_case(string $string, callable $conversion): string
+    {
+        return $conversion($string);
+    }
+}
+
 if (!function_exists('strip_special_chars'))
 {
     function strip_special_chars(string $string): string
