@@ -71,3 +71,11 @@ if (!function_exists('upper_hyphen_case'))
         return str_replace(' ', '-', upper_case($string));
     }
 }
+
+if (!function_exists('tight_case'))
+{
+    function tight_case(string $string): string
+    {
+        return str_replace(' ', '', lower_case($string));
+    }
+}
