@@ -12,7 +12,20 @@ if (!function_exists('strip_special_chars'))
 {
     function strip_special_chars(string $string): string
     {
-        return str_replace(['_', '-'], ' ', $string);
+        if (strpos($string, '_')) {
+            return str_replace('_', ' ', $string);
+        }
+
+        if (strpos($string, '-')) {
+            return str_replace('-', ' ', $string);
+        }
+
+        if (!strpos($string, ' ') && (strtoupper($string) !== $string)) {
+            preg_match_all('/(?:^|[A-Z])[a-z]+/', $string, $words);
+            return implode(' ', $words[0]);
+        }
+
+        return $string;
     }
 }
 
