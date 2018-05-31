@@ -4,7 +4,7 @@ if (!function_exists('convert_case'))
 {
     function convert_case(string $string, string $conversion): string
     {
-        return call_user_func(lower_hyphen_case($conversion), $string);
+        return call_user_func(lower_snake_case($conversion), $string);
     }
 }
 
@@ -12,15 +12,20 @@ if (!function_exists('strip_special_chars'))
 {
     function strip_special_chars(string $string): string
     {
-        return str_replace(['_', '-'], ' ', $string);
-    }
-}
+        if (strpos($string, '_')) {
+            return str_replace('_', ' ', $string);
+        }
 
-if (!function_exists('upper_case'))
-{
-    function upper_case(string $string): string
-    {
-        return ucwords(strtolower(strip_special_chars($string)));
+        if (strpos($string, '-')) {
+            return str_replace('-', ' ', $string);
+        }
+
+        if (!strpos($string, ' ') && (strtoupper($string) !== $string)) {
+            preg_match_all('/(?:^|[A-Z])[a-z]+/', $string, $words);
+            return implode(' ', $words[0]);
+        }
+
+        return $string;
     }
 }
 
@@ -29,6 +34,14 @@ if (!function_exists('lower_case'))
     function lower_case(string $string): string
     {
         return strtolower(strip_special_chars($string));
+    }
+}
+
+if (!function_exists('upper_case'))
+{
+    function upper_case(string $string): string
+    {
+        return ucwords(strtolower(strip_special_chars($string)));
     }
 }
 
